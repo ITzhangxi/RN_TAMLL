@@ -7,7 +7,7 @@ import {
     Platform,
     TouchableOpacity,
     TextInput,
-
+    ScrollView,
 } from 'react-native';
 // 引入公共样式
 import Dimensions from 'Dimensions';
@@ -17,6 +17,7 @@ export default class Home extends Component {
     render() {
         return (
             <View style={[styles.container,]}>
+                {/*头部*/}
                 <View style={styles.header}>
                     <TouchableOpacity activeOpacity={0.5}>
                         <Image
@@ -49,7 +50,7 @@ export default class Home extends Component {
                             style={styles.searchStyle}
                             placeholderTextColor={'#afafaf'} // 占位符的颜色
                             selectTextOnFocus={true} // 获取焦点的时候内容全部被选中
-                            underlineColorAndroid='transparent'
+                            underlineColorAndroid='transparent' // 清除安卓下划线
                         />
                         <TouchableOpacity activeOpacity={0.5}>
                             <Image
@@ -59,13 +60,65 @@ export default class Home extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
+                <ScrollView
+                    contentContainerStyle={styles.mainScrollViewStyle}
+                >
+                    {/*商家菜单盒子*/}
+                    <View style={styles.merchantMuneBox}>
+                        <TouchableOpacity activeOpacity={0.5}>
+                            <View style={styles.merchantBox}>
+                                <Image
+                                    source={{uri: 'suning'}}
+                                    style={styles.merchantLogo}
+                                />
+                                <Text style={styles.merchatTitle}>苏宁易购</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity activeOpacity={0.5}>
+                            <View style={styles.merchantBox}>
+                                <Image
+                                    source={{uri: 'tmallshop'}}
+                                    style={styles.merchantLogo}
+                                />
+                                <Text style={styles.merchatTitle}>天猫超市</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity activeOpacity={0.5}>
+                            <View style={styles.merchantBox}>
+                                <Image
+                                    source={{uri: 'tmallguoji'}}
+                                    style={styles.merchantLogo}
+                                />
+                                <Text style={styles.merchatTitle}>天猫国际</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity activeOpacity={0.5}>
+                            <View style={styles.merchantBox}>
+                                <Image
+                                    source={{uri: 'juhuasuan'}}
+                                    style={styles.merchantLogo}
+                                />
+                                <Text style={styles.merchatTitle}>聚划算</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity activeOpacity={0.5}>
+                            <View style={styles.merchantBox}>
+                                <Image
+                                    source={{uri: 'fenlei'}}
+                                    style={styles.merchantLogo}
+                                />
+                                <Text style={styles.merchatTitle}>分类</Text>
+                            </View>
+                        </TouchableOpacity>
+                    </View>
+                </ScrollView>
             </View>
         )
     }
 };
 const styles = StyleSheet.create({
     container: {
-        flex:1
+        flex: 1
     },
     // 头部区域
     header: {
@@ -134,7 +187,7 @@ const styles = StyleSheet.create({
         paddingRight: 13,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent:'space-between'
+        justifyContent: 'space-between'
     },
     // 头部搜索框中的搜索icon
     searchIcon: {
@@ -142,12 +195,41 @@ const styles = StyleSheet.create({
         height: 15,
     },
     // 头部搜索框
-    searchStyle:{
-        flex:1,
-        paddingLeft:5,
-        borderColor:'red',
+    searchStyle: {
+        flex: 1,
+        paddingLeft: 5,
+        borderColor: 'red',
         alignItems: 'center',
         paddingTop: 0,
         paddingBottom: 0
+    },
+    // 主体的滚动试图
+    mainScrollViewStyle: {
+        marginTop: Platform.OS === 'ios' ? 100 : 85,
+        flex: 1,
+        backgroundColor: '#fff',
+    },
+    // 商家菜单盒子
+    merchantMuneBox: {
+        width: width,
+        flexDirection: 'row',
+        paddingTop: 10,
+    },
+    // 商家菜单中商家
+    merchantBox: {
+        alignItems: 'center',
+        marginLeft: (width - 46 * 5) / 6,
+    },
+    // 商家菜单中的商家头像
+    merchantLogo: {
+        width: 46,
+        height: 46,
+        borderRadius: 23,
+
+    },
+    // 商家菜单中透析那个的title
+    merchatTitle: {
+        fontSize: 12,
+        marginTop: 5,
     }
 })

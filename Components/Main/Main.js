@@ -3,7 +3,8 @@ import {
     StyleSheet,
     View,
     Text,
-    Image
+    Image,
+    Platform
 } from 'react-native'
 import {TabNavigator} from 'react-navigation';
 
@@ -123,7 +124,13 @@ const MainApp = TabNavigator({
     tabBarOptions: {
         showIcon: true,
         activeTintColor: '#fe0041',
-        inactiveTintColor: '#616568'
+        inactiveTintColor: '#616568',
+        style: {
+            height: Platform.OS === 'ios' ? 0 : 55
+        },
+        labelStyle: {
+            marginTop: Platform.OS === 'ios' ? 15 : 0
+        }
     }
 });
 
@@ -131,8 +138,11 @@ const MainApp = TabNavigator({
 // 样式
 const styles = StyleSheet.create({
     iconStyle: {
-        width: 25,
-        height: 25,
+        width: 20,
+        height: 20,
+    },
+    tabBarStyle: {
+        height: 30
     }
 })
 export default class Main extends Component {
