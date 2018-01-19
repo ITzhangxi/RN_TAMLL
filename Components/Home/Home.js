@@ -9,10 +9,13 @@ import {
     TextInput,
     ScrollView,
 } from 'react-native';
-// 引入公共样式
 import Dimensions from 'Dimensions';
+//获取页面的宽度
+const {width} = Dimensions.get('window');
+import {StackNavigator} from 'react-navigation';
+// 引入头部轮播图组件
+import SliderShow from './SlideShow'
 
-const {width} = Dimensions.get('window')
 export default class Home extends Component {
     render() {
         return (
@@ -110,6 +113,10 @@ export default class Home extends Component {
                                 <Text style={styles.merchatTitle}>分类</Text>
                             </View>
                         </TouchableOpacity>
+                    </View>
+                    <View style={styles.slideShowBoxStyle}>
+                        <SliderShow/>
+
                     </View>
                 </ScrollView>
             </View>
@@ -231,5 +238,13 @@ const styles = StyleSheet.create({
     merchatTitle: {
         fontSize: 12,
         marginTop: 5,
-    }
+    },
+    // 轮播入盒子
+    slideShowBoxStyle: {
+        width: width,
+        height: 140,
+        paddingLeft: 10,
+        paddingRight: 10,
+        marginTop:10,
+    },
 })
