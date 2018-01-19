@@ -10,6 +10,8 @@ import {
 import Dimensions from 'Dimensions';
 // 获取屏幕宽度
 const {width} = Dimensions.get('window');
+// 盒子阴影
+// import {BoxShadow} from 'react-native-shadow'
 export default class SlideShow extends Component {
     constructor(props) {
         super(props);
@@ -38,12 +40,13 @@ export default class SlideShow extends Component {
                     {this.indicator()}
                 </View>
             </View>
+
         )
     };
 
     componentDidMount() {
-        // 获取轮播图图片的数据
-        let SlideShowData = require('../../TMLLData/HomeSlideShow.json').data;
+        // 获取轮播图图片的数据,这个数据来自于父组件
+        let SlideShowData = this.props.data;
         // 将获取的轮播图图片的数据付值给SlideShowData
         this.setState({SlideShowData: SlideShowData});
         // 执行定时器，让轮播图自行转动
@@ -85,7 +88,7 @@ export default class SlideShow extends Component {
         let scrollViewRef = this.refs.scrollViewRef;
         let activeNum = 0;
         let offetX;
-        let slideShowImageNum = require('../../TMLLData/HomeSlideShow.json').data.length;
+        let slideShowImageNum = this.props.data.length;
         this.timerInterval = setInterval(_ => {
             if ((this.state.activeNum + 1) >= slideShowImageNum) {
                 activeNum = 0;
@@ -98,7 +101,7 @@ export default class SlideShow extends Component {
             });
             offetX = activeNum * (width - 20);
             scrollViewRef.scrollTo({x: offetX, y: 0, animated: true})
-        }, 1000);
+        }, 2000);
 
     };
 
@@ -128,7 +131,9 @@ const styles = StyleSheet.create({
         shadowOffset: {width: 0, height: 5},
         shadowColor: '#9d9d9d',
         shadowOpacity: 1,
-        shadowRadius: 3
+        shadowRadius: 3,
+        elevation: 200,
+        zIndex: Platform.OS === 'ios' ? 1 : 0
     },
     // 滚动视图
     scrollViewStyle: {

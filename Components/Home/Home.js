@@ -115,7 +115,9 @@ export default class Home extends Component {
                         </TouchableOpacity>
                     </View>
                     <View style={styles.slideShowBoxStyle}>
-                        <SliderShow/>
+                        <SliderShow
+                            data={require('../../TMLLData/HomeSlideShow.json').data}
+                        />
 
                     </View>
                 </ScrollView>
@@ -245,6 +247,6 @@ const styles = StyleSheet.create({
         height: 140,
         paddingLeft: 10,
         paddingRight: 10,
-        marginTop:10,
+        marginTop: 10,
     },
 })
