@@ -59,7 +59,7 @@ class MemberScreen extends Component {
                 source={{uri: 'member'}}
                 style={[styles.iconStyle, {tintColor: tintColor}]}
             />
-        ))
+        )),
     };
 
     render() {
@@ -126,12 +126,14 @@ const MainApp = TabNavigator({
         activeTintColor: '#fe0041',
         inactiveTintColor: '#616568',
         style: {
-            height: Platform.OS === 'ios' ? 0 : 55
+            height: Platform.OS === 'ios' ? 50 : 55,
+            backgroundColor: '#fff',
         },
         labelStyle: {
             marginTop: Platform.OS === 'ios' ? 15 : 0
-        }
-    }
+        },
+    },
+
 });
 
 

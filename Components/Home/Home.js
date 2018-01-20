@@ -15,6 +15,8 @@ const {width} = Dimensions.get('window');
 import {StackNavigator} from 'react-navigation';
 // 引入头部轮播图组件
 import SliderShow from './SlideShow'
+// 引入活动组件
+import Active from './Active'
 
 export default class Home extends Component {
     render() {
@@ -65,6 +67,7 @@ export default class Home extends Component {
                 </View>
                 <ScrollView
                     contentContainerStyle={styles.mainScrollViewStyle}
+                    showsVerticalScrollIndicator={false}
                 >
                     {/*商家菜单盒子*/}
                     <View style={styles.merchantMuneBox}>
@@ -114,11 +117,17 @@ export default class Home extends Component {
                             </View>
                         </TouchableOpacity>
                     </View>
+                    {/*轮播图*/}
                     <View style={styles.slideShowBoxStyle}>
                         <SliderShow
                             data={require('../../TMLLData/HomeSlideShow.json').data}
                         />
-
+                    </View>
+                    {/*天猫官方直营*/}
+                    <View style={styles.activeBoxStyle}>
+                        <Active
+                            data={require('../../TMLLData/TMLLzhiyingImage.json')}
+                        />
                     </View>
                 </ScrollView>
             </View>
@@ -127,7 +136,7 @@ export default class Home extends Component {
 };
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
     },
     // 头部区域
     header: {
@@ -215,8 +224,8 @@ const styles = StyleSheet.create({
     // 主体的滚动试图
     mainScrollViewStyle: {
         marginTop: Platform.OS === 'ios' ? 100 : 85,
-        flex: 1,
         backgroundColor: '#fff',
+        paddingBottom: Platform.OS === 'ios' ? 110 : 115,
     },
     // 商家菜单盒子
     merchantMuneBox: {
@@ -244,9 +253,15 @@ const styles = StyleSheet.create({
     // 轮播入盒子
     slideShowBoxStyle: {
         width: width,
-        height: 140,
         paddingLeft: 10,
         paddingRight: 10,
-        marginTop: 10,
+        marginTop: 15,
+    },
+    // 活动盒子
+    activeBoxStyle: {
+        width: width,
+        paddingLeft: 10,
+        paddingRight: 10,
+        marginTop: 25,
     },
 })
