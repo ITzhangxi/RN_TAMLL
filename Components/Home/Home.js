@@ -33,7 +33,7 @@ export default class Home extends Component {
 
     render() {
         return (
-            <View style={[styles.container,]}>
+            <View style={[styles.container]}>
                 {/*头部*/}
                 <View style={[styles.header, {height: this.state.headerHeight}]}>
                     <TouchableOpacity activeOpacity={0.5}>
@@ -253,8 +253,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         height: 30,
         backgroundColor: '#fff',
-        // left: 13,
-        // right: 13,
         paddingLeft: 13,
         paddingRight: 13,
         flexDirection: 'row',
@@ -279,7 +277,7 @@ const styles = StyleSheet.create({
     mainScrollViewStyle: {
         marginTop: Platform.OS === 'ios' ? 100 : 85,
         backgroundColor: '#fff',
-        paddingBottom: Platform.OS === 'ios' ? 110 : 115,
+        paddingBottom: Platform.OS === 'ios' ? 300 : 305,
     },
     // 商家菜单盒子
     merchantMuneBox: {

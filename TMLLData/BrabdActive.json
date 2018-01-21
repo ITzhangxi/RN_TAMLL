@@ -9,9 +9,6 @@
     },
     {
       "uri": "brandactive02"
-    },
-    {
-      "uri": "brandactive03"
     }
   ],
   "brandactivesmall": [
@@ -19,16 +16,16 @@
       "uri": "brandactivesmall00"
     },
     {
-      "uri": "brandactivesmall00"
+      "uri": "brandactivesmall01"
     },
     {
-      "uri": "brandactivesmall00"
+      "uri": "brandactivesmall02"
     },
     {
-      "uri": "brandactivesmall00"
+      "uri": "brandactivesmall03"
     },
     {
-      "uri": "brandactivesmall00"
+      "uri": "brandactivesmall04"
     }
   ]
 }

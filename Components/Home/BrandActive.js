@@ -29,7 +29,6 @@ export default class BrandActive extends Component {
                 {/*标题盒子*/}
                 <View style={styles.titleBoxStyle}>
                     <Text style={[styles.titleStyle]}>{this.props.data.title}</Text>
-                    <Text style={styles.tipStyle}>{this.props.data.tip}</Text>
                 </View>
                 {/*主体盒子*/}
                 <View style={styles.contentBoxStyle}>
@@ -37,7 +36,7 @@ export default class BrandActive extends Component {
                     <View style={styles.leftBoxStyle}>
                         <TouchableOpacity activeOpacity={0.5}>
                             <Image
-                                source={{uri: 'brandactive00'}}
+                                source={{uri: this.props.data.brandactive[0].uri}}
                                 style={styles.leftImageStyle}
                             />
                         </TouchableOpacity>
@@ -47,7 +46,7 @@ export default class BrandActive extends Component {
                         <View style={styles.rightTopBoxStyle}>
                             <TouchableOpacity activeOpacity={0.5}>
                                 <Image
-                                    source={{uri: 'brandactive01'}}
+                                    source={{uri: this.props.data.brandactive[1].uri}}
                                     style={styles.rightTopImage}
                                     resizeMode={'contain'}
                                 />
@@ -56,7 +55,7 @@ export default class BrandActive extends Component {
                         <View style={styles.rightBottomBoxStyle}>
                             <TouchableOpacity activeOpacity={0.5}>
                                 <Image
-                                    source={{uri: 'brandactive02'}}
+                                    source={{uri: this.props.data.brandactive[2].uri}}
                                     style={styles.rightBottomImage}
                                     resizeMode={'contain'}
                                 />
@@ -73,7 +72,40 @@ export default class BrandActive extends Component {
                         </View>
                     </View>
                 </View>
-
+                {/*底部小广告*/}
+                <View style={styles.brandactivesmallBox}>
+                    <TouchableOpacity activeOpacity={0.5}>
+                        <Image
+                            source={{uri: this.props.data.brandactivesmall[0].uri}}
+                            style={styles.brandactivesmallImage}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5}>
+                        <Image
+                            source={{uri: this.props.data.brandactivesmall[1].uri}}
+                            style={styles.brandactivesmallImage}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5}>
+                        <Image
+                            source={{uri: this.props.data.brandactivesmall[2].uri}}
+                            style={styles.brandactivesmallImage}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5}>
+                        <Image
+                            source={{uri: this.props.data.brandactivesmall[3].uri}}
+                            style={styles.brandactivesmallImage}
+                        />
+                    </TouchableOpacity>
+                    <TouchableOpacity activeOpacity={0.5}>
+                        <Image
+                            source={{uri: this.props.data.brandactivesmall[4].uri}}
+                            style={styles.brandactivesmallImage}
+                            resizeMode={'contain'}
+                        />
+                    </TouchableOpacity>
+                </View>
             </View>
         )
     };
@@ -87,14 +119,6 @@ export default class BrandActive extends Component {
     };
 
     renderCountdownTime() {
-
-        // let nowDate = new Date();
-        // // 设置将来的时间对象
-        // let setWillDate = new Date(2018, 1, 21, 22, 50, 0);
-        // this.setState({
-        //     hours: nowDate.getHours(),
-        //     minutes: setWillDate.getHours(),
-        // });
         this.timer = setInterval(_ => {
             // 获取现在的时间对象
             let nowDate = new Date();
@@ -129,6 +153,7 @@ const styles = StyleSheet.create({
         // flexDirection: 'row',
         // justifyContent: 'space-between',
         // alignItems: 'center'
+        paddingBottom: 5
     },
     // 主体盒子
     contentBoxStyle: {
@@ -216,5 +241,20 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginLeft: 2,
         marginRight: 2,
+    },
+    // 底部小广告
+    brandactivesmallBox: {
+        width: width - 20,
+        flexDirection: 'row',
+        borderColor: "#efefef",
+        borderWidth: 1,
+        paddingTop: 1,
+        paddingBottom: 2
+    },
+    // 底部小广告的图片
+    brandactivesmallImage: {
+        width: 50,
+        height: 100,
+        marginLeft: ((width - 20) - 50 * 5 ) / 6,
     },
 });
