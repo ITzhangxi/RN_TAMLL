@@ -14,8 +14,6 @@ export default class ActiveScreen extends Component {
         return (
             //盒子的样式
             <View style={styles.containerStyle}>
-                {this.renderImage()}
-
                 {/*标题盒子*/}
                 <View style={styles.titleBoxStyle}>
                     <Text style={[styles.titleStyle]}>{this.props.data.title}</Text>
@@ -63,17 +61,6 @@ export default class ActiveScreen extends Component {
                 </View>
             </View>
         )
-    };
-
-    renderImage() {
-        let data = this.props.data;
-        console.log(this.props.data.title);
-        return (
-            <View>
-                {this.props.title}
-            </View>
-        )
-
     };
 };
 const styles = StyleSheet.create({

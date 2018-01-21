@@ -53,6 +53,10 @@ export default class SlideShow extends Component {
         this.slideShowInterval();
     };
 
+    componentWillUnmount() {
+        clearImmediate(this.slideShowInterval)
+    };
+
     // 渲染轮播图图片
     renderSlideShow() {
         let renderData = [];

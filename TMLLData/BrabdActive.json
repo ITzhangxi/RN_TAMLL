@@ -1,0 +1,34 @@
+{
+  "title": "品牌活动",
+  "brandactive": [
+    {
+      "uri": "brandactive00"
+    },
+    {
+      "uri": "brandactive01"
+    },
+    {
+      "uri": "brandactive02"
+    },
+    {
+      "uri": "brandactive03"
+    }
+  ],
+  "brandactivesmall": [
+    {
+      "uri": "brandactivesmall00"
+    },
+    {
+      "uri": "brandactivesmall00"
+    },
+    {
+      "uri": "brandactivesmall00"
+    },
+    {
+      "uri": "brandactivesmall00"
+    },
+    {
+      "uri": "brandactivesmall00"
+    }
+  ]
+}

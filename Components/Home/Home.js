@@ -15,8 +15,10 @@ const {width} = Dimensions.get('window');
 import {StackNavigator} from 'react-navigation';
 // 引入头部轮播图组件
 import SliderShow from './SlideShow'
-// 引入活动组件
+// 引入天猫官网直营组件
 import Active from './Active'
+// 引入品牌活动组件
+import BrandActive from './BrandActive'
 
 export default class Home extends Component {
     render() {
@@ -65,6 +67,7 @@ export default class Home extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
+
                 <ScrollView
                     contentContainerStyle={styles.mainScrollViewStyle}
                     showsVerticalScrollIndicator={false}
@@ -127,6 +130,12 @@ export default class Home extends Component {
                     <View style={styles.activeBoxStyle}>
                         <Active
                             data={require('../../TMLLData/TMLLzhiyingImage.json')}
+                        />
+                    </View>
+                    {/*品牌活动*/}
+                    <View style={styles.activeBoxStyle}>
+                        <BrandActive
+                            data={require('../../TMLLData/BrabdActive.json')}
                         />
                     </View>
                 </ScrollView>
