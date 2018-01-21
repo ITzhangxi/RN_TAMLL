@@ -4,7 +4,7 @@ import {
     View,
     Text,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
 } from 'react-native';
 import Dimensions from 'Dimensions'
 
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
     // 提示
     tipStyle: {
         fontSize: 12,
-        color:'#4b4b4b'
+        color: '#4b4b4b'
     },
     // 主体部分的样式
     contentBoxStyle: {
@@ -107,8 +107,6 @@ const styles = StyleSheet.create({
         width: (width - 20 - 150),
         flexDirection: 'row',
         alignItems: 'center',
-        // borderTopColor: '#ddd',
-        // borderTopWidth: 1,
     },
     // 主体右下方图片
     rightBottomImage: {

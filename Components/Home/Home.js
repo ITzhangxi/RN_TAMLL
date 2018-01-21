@@ -12,7 +12,6 @@ import {
 import Dimensions from 'Dimensions';
 //获取页面的宽度
 const {width} = Dimensions.get('window');
-import {StackNavigator} from 'react-navigation';
 // 引入头部轮播图组件
 import SliderShow from './SlideShow'
 // 引入天猫官网直营组件
@@ -21,11 +20,22 @@ import Active from './Active'
 import BrandActive from './BrandActive'
 
 export default class Home extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            searchBoxTop: Platform.OS === 'ios' ? 60 : 45,
+            searchBoxLeft: 13,
+            headerHeight: Platform.OS === 'ios' ? 100 : 85,
+            tamalltopLogoOpacit: 1,
+            tamalltopBoxPaddingTop: Platform.OS === 'ios' ? 30 : 15,
+        };
+    };
+
     render() {
         return (
             <View style={[styles.container,]}>
                 {/*头部*/}
-                <View style={styles.header}>
+                <View style={[styles.header, {height: this.state.headerHeight}]}>
                     <TouchableOpacity activeOpacity={0.5}>
                         <Image
                             style={styles.rqcodeStyle}
@@ -33,10 +43,12 @@ export default class Home extends Component {
                         />
                     </TouchableOpacity>
 
-                    <Image
-                        style={styles.tamalltopStyle}
-                        source={{uri: 'tmalltop',}}
-                    />
+                    <View style={[styles.tamalltopBoxStyle, {top: this.state.tamalltopBoxPaddingTop}]}>
+                        <Image
+                            style={[styles.tamalltopStyle, {opacity: this.state.tamalltopLogoOpacit}]}
+                            source={{uri: 'tmalltop'}}
+                        />
+                    </View>
                     <View style={styles.dialogueBox}>
 
                         <TouchableOpacity activeOpacity={0.5}>
@@ -47,7 +59,11 @@ export default class Home extends Component {
                         </TouchableOpacity>
                         <View style={styles.dialogueNum}><Text>9</Text></View>
                     </View>
-                    <View style={styles.headerSearchBox}>
+                    <View style={[styles.headerSearchBox, {
+                        top: this.state.searchBoxTop,
+                        left: this.state.searchBoxLeft,
+                        right: this.state.searchBoxLeft
+                    }]}>
                         <Image
                             source={{uri: 'search'}}
                             style={styles.searchIcon}
@@ -71,6 +87,8 @@ export default class Home extends Component {
                 <ScrollView
                     contentContainerStyle={styles.mainScrollViewStyle}
                     showsVerticalScrollIndicator={false}
+                    scrollEventThrottle={50}
+                    onScroll={this.contentScroll.bind(this)}
                 >
                     {/*商家菜单盒子*/}
                     <View style={styles.merchantMuneBox}>
@@ -141,7 +159,28 @@ export default class Home extends Component {
                 </ScrollView>
             </View>
         )
-    }
+    };
+
+    // 滚动主体时候，每一帧的出发事件
+    contentScroll(e) {
+        let offsetY = e.nativeEvent.contentOffset.y;
+        //处理输入框的
+        if (offsetY < 0) {
+            offsetY = 0
+        }
+        ;
+        if (offsetY > 33) {
+            offsetY = 33
+        }
+        ;
+        this.setState({
+            searchBoxLeft: offsetY + 13,
+            searchBoxTop: Platform.OS === 'ios' ? (60 - offsetY) : (45 - offsetY),
+            headerHeight: Platform.OS === 'ios' ? (100 - offsetY) : (85 - offsetY),
+            tamalltopBoxPaddingTop: Platform.OS === 'ios' ? (30 - offsetY - 5) : (15 - offsetY - 5),
+            tamalltopLogoOpacit: (1 - offsetY / 33)
+        });
+    };
 };
 const styles = StyleSheet.create({
     container: {
@@ -150,7 +189,6 @@ const styles = StyleSheet.create({
     // 头部区域
     header: {
         paddingTop: Platform.OS === 'ios' ? 30 : 15,
-        height: Platform.OS === 'ios' ? 100 : 85,
         paddingLeft: 13,
         paddingRight: 13,
         backgroundColor: '#fd0528',
@@ -174,11 +212,19 @@ const styles = StyleSheet.create({
         width: 20,
         height: 20,
     },
+    // 头部天猫logo的盒子
+    tamalltopBoxStyle: {
+        width: width,
+        alignItems: 'center',
+        position: 'absolute',
+    },
     // 头部天猫logo
     tamalltopStyle: {
         width: 100,
         height: 20,
         resizeMode: 'contain',
+        position: 'absolute',
+        opacity: 0.5
     },
     // 头部对话logo的盒子
     dialogueBox: {
@@ -205,11 +251,10 @@ const styles = StyleSheet.create({
     // 头部搜索盒子
     headerSearchBox: {
         position: 'absolute',
-        top: Platform.OS === 'ios' ? 60 : 45,
         height: 30,
         backgroundColor: '#fff',
-        left: 13,
-        right: 13,
+        // left: 13,
+        // right: 13,
         paddingLeft: 13,
         paddingRight: 13,
         flexDirection: 'row',
